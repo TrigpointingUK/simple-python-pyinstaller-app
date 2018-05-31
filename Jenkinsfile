@@ -17,6 +17,7 @@ pipeline {
         docker {
           image 'qnib/pytest'
         }
+
       }
       steps {
         sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
@@ -24,7 +25,9 @@ pipeline {
       post {
         always {
           junit 'test-reports/results.xml'
+
         }
+
       }
     }
     stage('Deliver') {
@@ -32,6 +35,7 @@ pipeline {
         docker {
           image 'cdrx/pyinstaller-linux:python2'
         }
+
       }
       steps {
         sh 'pyinstaller --onefile sources/add2vals.py'
@@ -39,23 +43,27 @@ pipeline {
       post {
         success {
           archiveArtifacts 'dist/add2vals'
-          stash includes: 'dist/add2vals', name: 'add2vals'
+          stash(includes: 'dist/add2vals', name: 'add2vals')
+
         }
+
       }
     }
     stage('Deploy to development') {
-      when {
-        branch 'development'
-      }
       agent {
         docker {
           image 'cdrx/pyinstaller-linux:python2'
         }
+
+      }
+      when {
+        branch 'development'
       }
       steps {
         unstash 'add2vals'
         echo 'Upload to bower-test'
         sh 'ls -lR'
+        sh 'scp dist/add2vals pi@bower-test:/home/pi/add2vals'
       }
     }
     stage('Deploy for production') {
