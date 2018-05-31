@@ -68,7 +68,7 @@ pipeline {
       steps {
         echo 'Upload to bower'
         echo 'Run on bower'
-        sh 'ls'
+        sh 'ls -lR'
       }
     }
   }
