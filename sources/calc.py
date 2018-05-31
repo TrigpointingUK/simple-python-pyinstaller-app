@@ -9,7 +9,7 @@ in quotes (i.e. as a string).
 # If 'value' is not an integer, convert it to a float and failing that, a string.
 def conv(value):
     try:
-        returnn int(value)
+        return int(value)
     except ValueError:
         try:
             return float(value)
