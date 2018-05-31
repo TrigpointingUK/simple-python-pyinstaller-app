@@ -47,11 +47,7 @@ pipeline {
       when {
         branch 'development'
       }
-      agent {
-        docker {
-          image 'buildo/alpine-ssh'
-        }
-      }
+      agent any 
       steps {
         unstash 'add2vals'
         echo 'Upload to bower-test'
