@@ -44,5 +44,21 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to development') {
+            when {
+                branch 'development'
+            }
+            steps {
+                echo "Upload to bower-test"
+            }
+        }
+        stage('Deploy for production') {
+            when {
+                branch 'production'
+            }
+            steps {
+                echo "Upload to bower"
+            }
+        }
     }
 }
