@@ -56,6 +56,7 @@ pipeline {
         unstash 'add2vals'
         echo 'Upload to bower-test'
         sh 'ls -lR'
+        sh 'scp dist/add2vals pi@bower:/home/pi/add2vals'
       }
     }
     stage('Deploy for production') {
