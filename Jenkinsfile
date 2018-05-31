@@ -49,7 +49,7 @@ pipeline {
       }
       agent {
         docker {
-          image 'cdrx/pyinstaller-linux:python2'
+          image 'buildo/alpine-ssh'
         }
       }
       steps {
