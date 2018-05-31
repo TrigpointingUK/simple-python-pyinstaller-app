@@ -58,7 +58,7 @@ pipeline {
       }
       steps {
         echo 'Upload to bower-test'
-        sh 'ls'
+        sh 'ls -lR'
       }
     }
     stage('Deploy for production') {
@@ -68,7 +68,7 @@ pipeline {
       steps {
         echo 'Upload to bower'
         echo 'Run on bower'
-        sh 'ls -lR'
+        sh 'ls'
       }
     }
   }
