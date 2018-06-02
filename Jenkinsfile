@@ -52,7 +52,7 @@ pipeline {
         unstash 'add2vals'
         echo 'Upload to bower-test'
         sh 'ls -lR'
-        sh 'scp dist/add2vals pi@bower.teasel.net:/home/pi/add2vals'
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'bower-test', transfers: [sshTransfer(excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/pi', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
     stage('Deploy for production') {
@@ -61,9 +61,6 @@ pipeline {
       }
       steps {
         echo 'Upload to bower'
-        echo 'Run on bower'
-        sh 'ls'
-        sshPublisher(publishers: [sshPublisherDesc(configName: 'bower-test', transfers: [sshTransfer(excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/pi', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
   }
