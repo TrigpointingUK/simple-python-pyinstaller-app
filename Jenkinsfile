@@ -52,7 +52,7 @@ pipeline {
         unstash 'add2vals'
         echo 'Upload to bower-test'
         sh 'ls -lR'
-        sshPublisher(publishers: [sshPublisherDesc(configName: 'bower-test', transfers: [sshTransfer(excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/pi', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'bower-test', transfers: [sshTransfer(excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
     stage('Deploy for production') {
