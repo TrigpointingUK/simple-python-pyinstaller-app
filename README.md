@@ -1,18 +1,6 @@
 # simple-python-pyinstaller-app
 
-This repository is for the
-[Build a Python app with PyInstaller](https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/)
-tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
-
-The repository contains a simple Python application which is a command line tool "add2vals" that outputs the addition of two values. If at least one of the
-values is a string, "add2vals" treats both values as a string and instead
-concatenates the values. The "add2" function in the "calc" library (which
-"add2vals" imports) is accompanied by a set of unit tests. These are tested with pytest to check that this function works as expected and the results are saved
-to a JUnit XML report.
-
-The delivery of the "add2vals" tool through PyInstaller converts this tool into
-a standalone executable file for Linux, which you can download through Jenkins
-and execute at the command line on Linux machines without Python.
-
-The `jenkins` directory contains an example of the `Jenkinsfile` (i.e. Pipeline)
-you'll be creating yourself during the tutorial.
+To automatically trigger a build:
+#CRUMB=$(wget -q --auth-no-challenge --user ianh --password symmwd --output-document - 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+#curl -X POST --user ianh:mypassword --data-urlencode json='{"parameter": [{"name":"id", "value":"token2920"}, {"name":"verbosity", "value":"high"}]}' -H "$CRUMB"  http://localhost:8080/job/simple-python-pyinstaller-app-multibranch/job/development/build
+#curl -X POST --user ianh:301b876364869898e492eb06b9835fd7 -H "$CRUMB"  http://localhost:8080/job/simple-python-pyinstaller-app-multibranch/job/development/build
