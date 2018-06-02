@@ -60,7 +60,7 @@ pipeline {
         branch 'production'
       }
       steps {
-        echo 'Upload to bower'
+        echo 'Upload to bower.'
       }
     }
   }
