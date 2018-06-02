@@ -47,7 +47,7 @@ pipeline {
       when {
         branch 'development'
       }
-      agent any 
+      agent any
       steps {
         unstash 'add2vals'
         echo 'Upload to bower-test'
@@ -63,6 +63,7 @@ pipeline {
         echo 'Upload to bower'
         echo 'Run on bower'
         sh 'ls'
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'bower-test', transfers: [sshTransfer(excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/pi', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/add2vals')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
   }
